@@ -1,1 +1,30 @@
-<h1>test</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Player Heads</title>
+    <style>
+        img {
+            width: 100px; /* Adjust the size as needed */
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Get Minecraft Player Head</h1>
+    <input type="text" id="username" placeholder="Enter Minecraft Username">
+    <button id="getHead">Get Head</button>
+    <div id="headContainer">
+        <img id="headImage" alt="Minecraft Head">
+    </div>
+
+    <script>
+        document.getElementById('getHead').addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const headImage = document.getElementById('headImage');
+            headImage.src = `https://crafatar.com/avatars/${username}`;
+        });
+    </script>
+</body>
+</html>
