@@ -3,28 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Player Heads</title>
+    <title>User Profile</title>
     <style>
-        img {
-            width: 100px; /* Adjust the size as needed */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text for better contrast */
+        }
+        .container {
+            display: flex;
+            border: 1px solid #333; /* Darker border */
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1e1e1e; /* Darker container background */
+        }
+        .profile {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #2e2e2e;
+        }
+        .profile img {
+            width: 100px;
             height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .links {
+            padding: 20px;
+            background-color: #3e3e3e; /* Darker links section */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .link-button {
+            margin: 5px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 5px;
+            gap: 5px;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .link-button img {
+            width: 24px;
+            height: 24px;
         }
     </style>
 </head>
 <body>
-    <h1>Get Minecraft Player Head</h1>
-    <input type="text" id="username" placeholder="Enter Minecraft Username">
-    <button id="getHead">Get Head</button>
-    <div id="headContainer">
-        <img id="headImage" alt="Minecraft Head">
+    <div class="container">
+        <div class="profile">
+            <img src="https://avatars.githubusercontent.com/u/168935358?v=4" alt="Profile Picture">
+            <div class="profile-info">
+                <h2>Maxplayz7566</h2>
+                <p style="margin-top: -10px;">Mediocre developer</p>
+                <p style="margin-top: -10px;">Also: Tir5d Turtle</p>
+            </div>
+        </div>
+        <div class="links">
+            <h2>Links</h2>
+            <a href="https://modrinth.com/user/Tir5d_Turtle"
+            target="_blank" 
+            style="background-color: #1bd96a;"
+            class="link-button"><img src="/modrinth.png">Modrinth
+            </a>
+        </div>
     </div>
-
-    <script>
-        document.getElementById('getHead').addEventListener('click', function() {
-            const username = document.getElementById('username').value;
-            const headImage = document.getElementById('headImage');
-            headImage.src = `https://minotar.net/armor/bust/${username}/500.png`;
-        });
-    </script>
 </body>
 </html>
