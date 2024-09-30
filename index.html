@@ -12,8 +12,8 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text for better contrast */
+            background-color: #121212;
+            color: #e0e0e0;
         }
         .container {
             display: flex;
@@ -63,6 +63,25 @@
             width: 24px;
             height: 24px;
         }
+        
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/bg.jpeg') no-repeat center center/cover;
+            z-index: -1;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Darkens the background image */
+        }
     </style>
 </head>
 <body>
@@ -83,6 +102,9 @@
             class="link-button"><img src="/modrinth.png">Modrinth
             </a>
         </div>
+    </div>
+    <div class="bg">
+        <div class="bg-overlay"></div>
     </div>
 </body>
 </html>
