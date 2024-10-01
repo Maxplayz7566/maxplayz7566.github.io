@@ -316,5 +316,18 @@
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
+
+            function isMobileDevice() {
+                const userAgent =
+                    navigator.userAgent || navigator.vendor || window.opera;
+
+                return /android|iPad|iPhone|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+                    userAgent
+                );
+            }
+
+            if (isMobileDevice()) {
+                window.location.href = `https://modrinth.com/shader/${projectName}`;
+            }
     </script>
 </html>
