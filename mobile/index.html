@@ -182,7 +182,7 @@
             const links = document.querySelector(".links");
 
             for (let i = 0; i < response.length; i++) {
-                links.innerHTML += `<a onclick="window.location.href = '${response[i].url}'" style="background-color: ${response[i].colour}" class="link-button"><img src="${response[i].icon}" />${response[i].name}</a>`
+                links.innerHTML += `<a href = '${response[i].url}' style="background-color: ${response[i].colour}" class="link-button"><img src="${response[i].icon}" />${response[i].name}</a>`;
             }
         });
 

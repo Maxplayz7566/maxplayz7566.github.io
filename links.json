@@ -16,5 +16,11 @@
         "icon": "/modrinth.png",
         "url": "https://modrinth.com/user/Tir5d_Turtle",
         "colour": "#1b95d9"
+    },
+    {
+        "name": "Mod Updater",
+        "icon": "https://cdn.modrinth.com/data/XwTZErnT/7ea6902d809fcd87a627b5b5b1cbd7af337aeb05.png",
+        "url": "/mods/modupdater",
+        "colour": "#9370DB"
     }
 ]
