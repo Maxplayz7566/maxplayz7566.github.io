@@ -22,5 +22,29 @@
         "icon": "https://cdn.modrinth.com/data/XwTZErnT/7ea6902d809fcd87a627b5b5b1cbd7af337aeb05.png",
         "url": "/mods/modupdater",
         "colour": "#9370DB"
+    },
+    {
+        "name": "Crash on death",
+        "icon": "https://cdn.modrinth.com/data/QgFhmbMr/aa17d27509f28a1e20150828151b21814d117cd5_96.webp",
+        "url": "/mods/crashondeath",
+        "colour": "#FF69B4"
+    },
+    {
+        "name": "Lightingless",
+        "icon": "https://cdn.modrinth.com/data/r1TElRR8/0924bdf586771ee81cc95febaaf3576913cced81.png",
+        "url": "/mods/lightingless",
+        "colour": "#DAA520"
+    },
+    {
+        "name": "Cordcraft",
+        "icon": "https://cdn.modrinth.com/data/NMiocvuZ/91d6475747fac66259aa034f8f826660a4b1391d_96.webp",
+        "url": "/mods/cordcraft",
+        "colour": "#228B22"
+    },
+    {
+        "name": "Max's QOL Library",
+        "icon": "https://cdn.modrinth.com/data/NMiocvuZ/91d6475747fac66259aa034f8f826660a4b1391d_96.webp",
+        "url": "/mods/qol",
+        "colour": "#FF7518"
     }
 ]

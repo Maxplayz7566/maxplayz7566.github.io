@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+        <style>
+            body {
+                margin: 0;
+                background-color: #16181c;
+            }
+
+            .modcard #projecticon {
+                border-radius: 16px;
+                background-color: #33363d;
+                height: 128px;
+                width: 128px;
+            }
+
+            .modcard {
+                display: flex;
+                gap: 15px;
+                color: white;
+                align-items: center;
+                font-family: Arial, sans-serif;
+            }
+
+            .projectstats {
+                align-items: center;
+                display: flex;
+                margin-top: -20px;
+                gap: 15px;
+            }
+
+            #projectname {
+                margin-top: 20px;
+            }
+
+            #projectdescription {
+                margin-top: -20px;
+                font-weight: normal;
+                max-width: 450px;
+            }
+
+            .projectstats * {
+                font-weight: normal;
+                align-items: center;
+                display: flex;
+                gap: 5px;
+            }
+
+            .toparea {
+                margin-top: 100px;
+                margin-left: 150px;
+                margin-right: 150px;
+            }
+
+            .sectionselections {
+                background-color: #33363d;
+                padding: 5px;
+                width: fit-content;
+                border-radius: 150px;
+            }
+
+            .sectionselections * {
+                background-color: #33363d;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 25px;
+                padding-right: 25px;
+                width: fit-content;
+                border-radius: 150px;
+                cursor: pointer;
+                color: white;
+                font-weight: bolder;
+                border-width: 0;
+                transition: background-color 0.1s ease-in-out;
+            }
+
+            .sectionselections *:hover {
+                background-color: #3371ed;
+            }
+
+            .selectedsection {
+                background-color: #004ee9;
+            }
+
+            .descriptionsection a {
+                color: #3e9cff;
+                font-family: Arial, sans-serif;
+            }
+
+            .descriptionsection img {
+                max-width: 100%;
+            }
+
+            .section {
+                margin-right: 30%;
+                background-color: #33363d;
+                margin-left: 150px;
+                margin-top: 50px;
+                border-radius: 16px;
+                padding: 15px;
+                color: white;
+                font-family: Arial, sans-serif;
+            }
+
+            .info {
+                background-color: #33363d;
+                top: 305px;
+                border-radius: 16px;
+                padding: 15px;
+                margin-left: 72%;
+                width: 15%;
+                color: white;
+                font-family: Arial, sans-serif;
+                position: absolute;
+            }
+
+            .versioninfo {
+                background-color: #2a2d34;
+                border-radius: 16px;
+                cursor: pointer;
+                display: flex;
+                gap: 15px;
+                align-items: center;
+                padding: 2px 20px 2px 20px;
+            }
+
+            .versionssection {
+                display: flex;
+                flex-direction: column;
+                gap: 45px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="toparea">
+            <div class="modcard">
+                <img id="projecticon" />
+                <div id="projectinfo">
+                    <h1 id="projectname"></h1>
+                    <h5 id="projectdescription"></h5>
+                    <div class="projectstats">
+                        <h3 id="projectdownloads"></h3>
+                        <h2>|</h2>
+                        <h3 id="projecthearts"></h3>
+                        <h2>|</h2>
+                        <h3 id="projecttype"></h3>
+                        <h2>|</h2>
+                        <h6 style="margin-left: -5px">
+                            Stats by modrinth's api
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="sectionselections">
+                <button
+                    id="descriptionsectionb"
+                    onclick="window.location.hash = `#description`"
+                >
+                    Description
+                </button>
+                <button
+                    id="versionssectionb"
+                    onclick="window.location.hash = `#versions`"
+                >
+                    Versions
+                </button>
+            </div>
+        </div>
+
+        <div class="descriptionsection section" id="descriptionsection"></div>
+        <div class="versionssection section" id="versionssection"></div>
+
+        <div class="section info">
+            <h1 style="margin-top: -5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Compatibility</h1>
+            <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Game versions:</h2>
+            <span id="gameversions"></span>
+            <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Platforms:</h2>
+            <span id="platforms"></span>
+            <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Environments:</h2>
+            <span id="enviroments1"></span>
+            <span id="enviroments2"></span>
+        </div>
+    </body>
+    <script src="/strips.js"></script>
+    <script>
+        const projectName = "cordcraft"; // slug/id of project
+
+        function formatStrings(arr) {
+            if (Array.isArray(arr) && arr.length > 0) {
+                const capitalize = (str) =>
+                    str.charAt(0).toUpperCase() + str.slice(1);
+                return arr.map(capitalize).join(", ");
+            } else {
+                throw new Error("Input must be a non-empty array of strings");
+            }
+        }
+
+        function formatNumber(num) {
+            if (num >= 1e9) {
+                return (num / 1e9).toFixed(2) + "B"; // For billions
+            } else if (num >= 1e6) {
+                return (num / 1e6).toFixed(2) + "M"; // For millions
+            } else if (num >= 1e3) {
+                return (num / 1e3).toFixed(2) + "K"; // For thousands
+            } else {
+                return num.toString();
+            }
+        }
+
+        const showSection = () => {
+            const hash = location.hash.toLowerCase();
+
+            if (hash === "#versions") {
+                document.getElementById("descriptionsection").style.display =
+                    "none";
+                document.getElementById("versionssection").style.display =
+                    "inherit";
+
+                document.getElementById("descriptionsectionb").className = "";
+                document.getElementById("versionssectionb").className =
+                    "selectedsection";
+            } else {
+                location.hash = "#description";
+                document.getElementById("descriptionsection").style.display =
+                    "inherit";
+                document.getElementById("versionssection").style.display =
+                    "none";
+
+                document.getElementById("descriptionsectionb").className =
+                    "selectedsection";
+                document.getElementById("versionssectionb").className = "";
+            }
+        };
+
+        showSection();
+        window.addEventListener("hashchange", showSection);
+
+        fetch(`https://api.modrinth.com/v2/project/${projectName}`)
+            .then((response) => response.json())
+            .then((data) => {
+                document.getElementById("projecticon").src = data.icon_url;
+                document.getElementById("projectname").innerHTML = data.title;
+                document.title = data.title + " - Maxplayz7566.github.io";
+                document.getElementById("projectdownloads").innerHTML =
+                    formatNumber(data.downloads) +
+                    `<span class="material-symbols-rounded" style="font-size: 1.3em;">download</span>`;
+                document.getElementById("projecthearts").innerHTML =
+                    formatNumber(data.followers) +
+                    `<span class="material-symbols-rounded" style="font-size: 1.3em;">favorite</span>`;
+                document.getElementById("projectdescription").innerHTML =
+                    data.description;
+                document.getElementById("projecttype").innerHTML =
+                    formatStrings([data.project_type]) +
+                    `<span class="material-symbols-rounded" style="font-size: 1.3em;">dns</span>`;
+                document.getElementById("descriptionsection").innerHTML =
+                    marked.parse(data.body);
+                document.getElementById("gameversions").innerHTML =
+                    marked.parse(
+                        "**" + formatStrings(data.game_versions) + "**"
+                    );
+                document.getElementById("platforms").innerHTML = marked.parse(
+                    "**" + formatStrings(data.loaders) + "**"
+                );
+
+                document.getElementById("enviroments1").innerHTML =
+                    marked.parse(
+                        "**" +
+                            "Client: " +
+                            formatStrings([data.client_side]) +
+                            "**"
+                    );
+                document.getElementById("enviroments2").innerHTML =
+                    marked.parse(
+                        "**" +
+                            "Server: " +
+                            formatStrings([data.server_side]) +
+                            "**"
+                    );
+
+                fetch(`https://api.modrinth.com/v2/project/${projectName}/version`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const versionssection = document.getElementById('versionssection')
+
+                        for (let i = 0; i < data.length; i++) {
+                            versionssection.innerHTML += `<div class="versioninfo" onclick="window.open('${data[i].files[0].url}', '_blank');">
+                <h4 id="versionname" style="display: inline-block; max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${data[i].version_number}</h4>
+                <h2 style="display: inline-block; margin: 0 5px;">|</h2>
+                <h4 id="versiongamever" style="display: inline-block; max-width: 500px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${formatStrings(data[i].game_versions)}</h4>
+                <h2 style="display: inline-block; margin: 0 5px;">|</h2>
+                <h4 id="versionplat" style="display: inline-block; max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${formatStrings(data[i].loaders)}</h4>
+            </div>
+
+            <label style="color: #33363d; user-select: none;">a</label>`
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching data:", error);
+                    });
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    </script>
+</html>
