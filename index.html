@@ -22,8 +22,8 @@
 
             body {
                 display: flex;
-                justify-content: center;
-                align-items: center;
+                justify-content: center; /* Center the container horizontally */
+                align-items: center; /* Center the container vertically */
                 height: 100vh;
                 margin: 0;
                 font-family: Arial, sans-serif;
@@ -31,15 +31,18 @@
                 color: #e0e0e0;
                 overflow: hidden;
             }
+
             .container {
                 display: flex;
                 border: 1px solid #333; /* Darker border */
                 border-radius: 8px;
                 overflow: hidden;
-                width: auto;
+                width: 80%; /* Set a fixed width or percentage */
+                max-width: 800px; /* Optional: set a max width for larger screens */
                 height: auto;
                 background-color: #1e1e1e; /* Darker container background */
             }
+
             .profile {
                 display: flex;
                 flex-direction: column;
