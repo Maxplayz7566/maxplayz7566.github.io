@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Github",
+        "icon": "/github.png",
+        "url": "https://github.com/Maxplayz7566/",
+        "colour": "#ff4f4f"
+    },
+    {
+        "name": "Youtube",
+        "icon": "/youtube.png",
+        "url": "https://www.youtube.com/@Tir5d.Turtle",
+        "colour": "#2e8b57"
+    },
+    {
+        "name": "Modrinth",
+        "icon": "/modrinth.png",
+        "url": "https://modrinth.com/user/Tir5d_Turtle",
+        "colour": "#1b95d9"
+    }
+]
