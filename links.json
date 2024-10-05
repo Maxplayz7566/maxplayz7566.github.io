@@ -18,6 +18,12 @@
         "colour": "#1b95d9"
     },
     {
+        "name": "Minecraft World",
+        "icon": "/gtag.png",
+        "url": "/MinecraftWorld",
+        "colour": "#f7413c"
+    },
+    {
         "name": "Mod Updater",
         "icon": "https://cdn.modrinth.com/data/XwTZErnT/7ea6902d809fcd87a627b5b5b1cbd7af337aeb05.png",
         "url": "/mods/modupdater",

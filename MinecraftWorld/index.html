@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft world - Gorilla tag map</title>
+    <meta content="Minecraft World - Gorilla Tag Level" property="og:title" />
+        <meta
+            content="This is a **Minecraft map**, took me forever to convert it."
+            property="og:description"
+        />
+        <meta content="https://mod.io/g/gorilla-tag/m/minecraft-world?preview=9e864afb7cd11c2a704287481afcdfaf" property="og:url" />
+        <meta
+            content="https://thumb.modcdn.io/mods/67e5/4386349/thumb_1020x2000/cover.1.png"
+            property="og:image"
+        />
+        <meta content="#fbc401" data-react-helmet="true" name="theme-color" />
+</head>
+<style>
+    body, html {
+        background-color: #16181c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h1 {
+        color: white;
+        font-family: Arial;
+        text-align: center;
+    }
+</style>
+<body>
+    <h1 id="centertext">Redirecting</h1>
+</body>
+<script>
+    const strings = [
+        "Redirecting",
+        "Redirecting.",
+        "Redirecting..",
+        "Redirecting..."
+    ];
+
+    let index = 0;
+    const updateText = () => {
+        document.getElementById('centertext').textContent = strings[index];
+        index = (index + 1) % strings.length;
+    };
+
+    setInterval(updateText, 500);
+
+    window.location.href = "https://mod.io/g/gorilla-tag/m/minecraft-world?preview=9e864afb7cd11c2a704287481afcdfaf";
+</script>
+</html>
